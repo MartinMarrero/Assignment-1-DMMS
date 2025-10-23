@@ -13,6 +13,7 @@
 #include "src/headers/decisionmethod.h"
 #include "src/headers/pessimistic.h"
 #include "src/headers/optimistic.h"
+#include "src/headers/laplace.h"
 #include <string>
 #include <iostream>
  
@@ -31,6 +32,14 @@ int main() {
   std::cout << "Optimistic: ";
   {
     DecisionMethod* method = new Optimistic();
+    std::pair<std::string, double> result = method->Execute(table);
+    std::cout << result.first << "(" << result.second << ")" << std::endl;
+    delete method;
+  }
+
+    std::cout << "Laplace: ";
+  {
+    DecisionMethod* method = new Laplace();
     std::pair<std::string, double> result = method->Execute(table);
     std::cout << result.first << "(" << result.second << ")" << std::endl;
     delete method;
