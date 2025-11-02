@@ -1,4 +1,4 @@
-import { Alternative, Pessimistic, Optimistic, Laplace } from './decisionmethod';
+import { Alternative, Pessimistic, Optimistic, Laplace, Savage } from './decisionmethod';
 
 export type ComputeHandler = (csv: string, method: string, opts?: any) => void;
 
@@ -44,6 +44,9 @@ export class DecisionController {
 
 		const lap = new Laplace().Execute(table);
 		results.push({ method: 'laplace', name: lap[0], value: lap[1] });
+
+		const sav = new Savage().Execute(table);
+		results.push({ method: 'savage', name: sav[0], value: sav[1] });
 
 		// hurwitz uses opts.degree if provided, otherwise 0.5
 		// For Hurwitz, compute both the single best for the given degree and

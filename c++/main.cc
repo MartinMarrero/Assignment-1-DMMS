@@ -15,6 +15,7 @@
 #include "src/headers/optimistic.h"
 #include "src/headers/laplace.h"
 #include "src/headers/hurwitz.h"
+#include "src/headers/savage.h"
 #include <string>
 #include <iostream>
  
@@ -57,6 +58,14 @@ int main() {
   {
     method = new Hurwitz();
     method->Execute(table);
+  }
+
+  std::cout << "Savage: ";
+  {
+    method = new Savage();
+    std::pair<std::string, double> result = method->Execute(table);
+    std::cout << result.first << "(" << result.second << ")" << std::endl;
+    delete method;
   }
 
   for (auto* alt : table) delete alt;

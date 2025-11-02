@@ -3,6 +3,7 @@ import { Pessimistic } from './pessimistic.js';
 import { Optimistic } from './optimistic.js';
 import { Laplace } from './laplace.js';
 import { Hurwitz } from './hurwitz.js';
+import { Savage } from './savage.js';
 
 export function run() {
   const fname = '../../how_to_expand.csv';
@@ -37,6 +38,13 @@ export function run() {
   {
     method = new Hurwitz();
     method.Execute(table);
+  }
+
+  console.log('Savage:');
+  {
+    method = new Savage();
+    const result = method.Execute(table);
+    console.log(`${result[0]}(${FormatDouble(result[1])})`);
   }
 }
 
